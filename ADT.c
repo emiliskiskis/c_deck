@@ -3,6 +3,16 @@
 #include "ADT.h"
 #include "tipas.h"
 
+typedef struct Node {
+    _T element;
+    struct Node *prev, *next;
+} Node;
+
+typedef struct Deck {
+    int size;
+    Node *begin, *end;
+} Deck;
+
 Deck create_deck(){
     Deck x;
     x.size = 0;
@@ -52,7 +62,7 @@ _T Deck_pop_front(Deck *deck){
         return x;
     } else if (deck->size == 1){
         _T x = deck->begin->element;
-        free(deck->begin);
+        free(deck->begin); // Free
         deck->begin = NULL;
         deck->end = NULL;
         deck->size--;
@@ -90,7 +100,7 @@ _T Deck_pop_back(Deck *deck){
         return x;
     } else if (deck->size == 1){
         _T x = deck->end->element;
-        free(deck->end);
+        free(deck->end); // Free
         deck->end = NULL;
         deck->begin = NULL;
         deck->size--;
@@ -119,9 +129,9 @@ void Deck_destroy(Deck *deck){
         Node *w = deck->begin;
         for(int i = 0; i < (deck->size)-1; i++){
             w = w->next;
-            free(w->prev);
+            free(w->prev); // Free each element
         }
-        free(w);
+        free(w); // Free last element
     }
-    free(deck);
+    free(deck); // Free deck
 }
