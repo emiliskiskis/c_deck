@@ -1,14 +1,23 @@
 #include <stdio.h>
-#include "ADT.h"
+#include "Deck.h"
 
 int main(){
-    Deck x = create_deck();
-    printf("%d\n", Deck_size(&x));
-    printf("%d\n", Deck_isempty(&x));
-    Deck_push_front(&x, 5165);
-    printf("%d\n%d\n%d\n", Deck_isempty(&x), Deck_get_front(&x), Deck_get_back(&x));
-    printf("%d\n", Deck_isempty(&x));
-    printf("%d\n", Deck_pop_front(&x));
-    printf("%d\n", Deck_push_back(&x, 200));
-    Deck_destroy(&x);
+    int z;
+    Deck x;
+    Deck_create(&x);
+    printf("%d\n", Deck_size(x));
+    scanf("%d", &z);
+    for(int i = 0; i < 10000000; i++){
+        if(!(i % 100000)) printf("Pushing %d to the back\n", i);
+        Deck_push_back(x, i);
+    }
+    scanf("%d", &z);
+    for(int i = 0; i < 1000000; i++){
+        Deck_pop_back(x, &z);
+        if(!(i % 100000)) printf("Popped %d from the back\n", z);
+    }
+    scanf("%d", &z);
+    printf("Size was %d\n", Deck_size(x));
+    Deck_destroy(x);
+    scanf("%d", &z);
 }
