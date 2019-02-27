@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "Deck.h"
 
-int main(){
-    int z;
+void myStressTest(){
+	int z;
     Deck x;
     Deck_create(&x);
     printf("%d\n", Deck_size(x));
@@ -20,4 +20,33 @@ int main(){
     printf("Size was %d\n", Deck_size(x));
     Deck_destroy(x);
     scanf("%d", &z);
+}
+
+void jonasStressTest(){
+	Deck test;
+	Deck_create(&test);
+	int temp;
+	for(int i = 0; i < 10000; i++){
+		printf("Laukiama ");
+		scanf("%d", &temp);
+		for(int j = 0; j < 1000; j++){
+			if(Deck_push_back(test, (i+1)*(j+1))){
+				printf("Idedant ivyko klaida\n");
+				return;			
+			} else {
+				printf("Idetas %d\n", (i+1)*(j+1));
+			};
+		}
+		//printf("Laukiama isimti ");
+		//scanf("%d", &temp);
+		for(int j = 0; j < 1000; j++){
+			int x;
+			Deck_pop_back(test, &x);
+			printf("Isimtas %d\n", x);
+		}
+	}
+}
+
+int main(){
+    myStressTest();
 }
