@@ -27,26 +27,23 @@ void jonasStressTest(){
 	Deck_create(&test);
 	int temp;
 	for(int i = 0; i < 10000; i++){
-		printf("Laukiama ");
-		scanf("%d", &temp);
-		for(int j = 0; j < 1000; j++){
+		for(int j = 0; j < 10000; j++){
 			if(Deck_push_back(test, (i+1)*(j+1))){
 				printf("Idedant ivyko klaida\n");
 				return;			
-			} else {
-				printf("Idetas %d\n", (i+1)*(j+1));
-			};
+			}
 		}
-		//printf("Laukiama isimti ");
-		//scanf("%d", &temp);
-		for(int j = 0; j < 1000; j++){
+		for(int j = 0; j < 10000; j++){
 			int x;
 			Deck_pop_back(test, &x);
-			printf("Isimtas %d\n", x);
 		}
 	}
+	printf("Size: %d\n", Deck_size(test));
 }
 
 int main(){
-    myStressTest();
+    Deck x;
+    int temp;
+    Deck_create(&x);
+    printf("%d\n", Deck_isfull(x));
 }

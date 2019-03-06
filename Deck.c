@@ -27,12 +27,12 @@ int Deck_isempty(Deck deck){
 }
 
 int Deck_isfull(Deck deck){
-    deck->end->next = (Node*) malloc (sizeof(Node));
-    if(deck->end->next != NULL){
-        free(deck->end->next);
-        deck->end->next = NULL;
-        return 0;
-    } else return 1;
+    Node *test = (Node*) malloc (sizeof(Node));
+	if(!test){
+		free(test);
+		return 1;
+	}
+	else return 0;
 }
 
 int Deck_push_front(Deck deck, Deck_type x){
