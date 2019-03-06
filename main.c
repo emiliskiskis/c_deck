@@ -43,7 +43,6 @@ void jonasStressTest(){
 
 int main(){
     Deck x;
-    int temp;
     Deck_create(&x);
-    printf("%d\n", Deck_isfull(x));
+    jonasStressTest();
 }
